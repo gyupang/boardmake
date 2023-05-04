@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%!String user = ""; %>
+    <%user = (String)session.getAttribute("user"); %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +30,17 @@
 				</div>
 				<div class="col-md-5 text-end">
 					<nav class="top-nav">
+					
+					<%
+					if(user==null|| user.isEmpty()){
+					%>
 						<a href="?fname=login">로그인</a>
 						 <a href="?fname=register">회원가입</a> 
+						 <%} else{ %>
+						 
+						 <a href="/boardmake/LogOut">로그아웃</a>			 
 						 <a href="#">회원수정</a>
-
+<%} %>
 					</nav>
 
 				</div>

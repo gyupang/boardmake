@@ -10,8 +10,13 @@ if(fname ==null || "null".equals(fname)){
 }
 %>
 
+
+
 <%@ include file="include/header.jsp" %>
+
 <jsp:include page="<%=fname %>" />
+
+
 <%@ include file="include/footer.jsp" %>
 
 

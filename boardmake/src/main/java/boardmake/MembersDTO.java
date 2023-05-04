@@ -2,7 +2,6 @@ package boardmake;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
-import java.time.LocalDateTime;
 
 public class MembersDTO {
 
@@ -17,7 +16,7 @@ public class MembersDTO {
 	private String tel;
 	private int level;
 	private String uip;
-	private LocalDateTime wdate;
+	private String wdate;
 
 	public int getNum() {
 		return num;
@@ -114,11 +113,15 @@ public class MembersDTO {
 		this.uip = uip;
 	}
 
-	public LocalDateTime getWdate() {
+	public void setUip(String uip) {
+		this.uip = uip;
+	}
+
+	public String getWdate() {
 		return wdate;
 	}
 
-	public void setWdate(LocalDateTime wdate) {
+	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}
 

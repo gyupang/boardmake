@@ -1,17 +1,54 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
-
-<web-app>
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:web="http://xmlns.jcp.org/xml/ns/javaee">
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-     <servlet-name>MemberOk</servlet-name>
-     <display-name>MemberOk</display-name>
-     <description></description>
-     <servlet-class>boardmake.MemberOk</servlet-class>
+    <description></description>
+    <display-name>MemberOk</display-name>
+    <servlet-name>MemberOk</servlet-name>
+    <servlet-class>boardmake.MemberOk</servlet-class>
   </servlet>
   <servlet-mapping>
-     <servlet-name>MemberOk</servlet-name>
-     <url-pattern>/MemberOk</url-pattern>
+    <servlet-name>MemberOk</servlet-name>
+    <url-pattern>/MemberOk</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberLogin</display-name>
+    <servlet-name>MemberLogin</servlet-name>
+    <servlet-class>boardtest.MemberLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberLogin</servlet-name>
+    <url-pattern>/MemberLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>boardtest.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IdCook</display-name>
+    <servlet-name>IdCook</servlet-name>
+    <servlet-class>boardtest.IdCook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdCook</servlet-name>
+    <url-pattern>/IdCook</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CookieManager</display-name>
+    <servlet-name>CookieManager</servlet-name>
+    <servlet-class>boardtest.CookieManager</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieManager</servlet-name>
+    <url-pattern>/CookieManager</url-pattern>
   </servlet-mapping>
 </web-app>

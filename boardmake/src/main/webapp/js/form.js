@@ -9,6 +9,17 @@ const uemail = /^([a-zA-Z0-9]+[_-]?)*[a-zA-Z0-9]+@[a-zA-Z0-9]+([-_.]?[a-zA-Z0-9]
 
 const utel = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/
 
+
+window.onload = function(){
+	if(getCookie("user")) {
+		document.getElementById("userid").value=getCookie("user");
+		document.loginform.huid.checked = true;
+	}
+}
+
+
+
+
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -122,7 +133,7 @@ function register() {
 
 
 	} else if (!utel.test(tel.value)) {
-		alert("전화번호를 입력해주세요.");
+		alert("전화번호 양식을 맞춰주세요.");
 		tel.focus();
 		return false;
 	}
@@ -130,4 +141,40 @@ function register() {
 //이상없을 경우 submit
 document.registerform.submit();
 
+function loginSubmit(){
+	const form = document.loginform;
+    const is_checked = form.huid.checked;
+    
+	if(form.userid.value==""){
+		alert("아이디를 입력하세요.");
+		form.userid.focus();
+		return false;
+	}else if(form.userpass.value==""){
+		alert("비밀번호를 입력하세요.");
+		form.userpass.focus();
+		return false;
+	}
+	if(is_checked){ //체크박스에 체크 되어 있으면 쿠키
+	    setCookie('user', form.userid.value, '3');		
+	}else{
+		//체크가 되어 있지 않다면 쿠키를 삭제한다.
+		delCookie('user');
+	}
+	
+	form.submit();
 }
+
+function isChecked(){
+   const chk = document.loginform.huid;
+   const is_checked = chk.checked;
+   
+   if(is_checked) {
+	  let y = confirm("아이디를 저장하시겠습니다. \n 공공장소에서는 추천하지 않습니다.");
+	  if(y==false){
+		  chk.checked = false;
+	  } 
+   }
+}
+
+
+
