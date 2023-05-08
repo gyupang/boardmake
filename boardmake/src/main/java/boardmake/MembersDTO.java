@@ -2,6 +2,9 @@ package boardmake;
 
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class MembersDTO {
 
@@ -121,6 +124,14 @@ public class MembersDTO {
 		return wdate;
 	}
 
+	public void setWdate() {
+		Date today = new Date();
+		Locale currentLocale = new Locale("KOREAN", "KOREA");
+		String pattern = "yyyy-MM-dd";
+	   SimpleDateFormat formatter = new SimpleDateFormat(pattern, currentLocale);
+		this.wdate = formatter.format(today);
+
+	}
 	public void setWdate(String wdate) {
 		this.wdate = wdate;
 	}

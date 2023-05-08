@@ -141,6 +141,82 @@ function register() {
 //이상없을 경우 submit
 document.registerform.submit();
 
+
+
+function register2() {
+	//변수 정의
+	const userid = document.getElementById("userid");
+	const userpass = document.getElementById("userpass");
+	const username = document.getElementById("username");
+	const useremail = document.getElementById("useremail");
+	const postcode = document.getElementById("postcode");
+	const addr = document.getElementById("addr");
+	const detailaddr = document.getElementById("detailaddr");
+	const tel = document.getElementById("tel");
+	/*const tel2 = document.getElementById("tel2");
+	const tel3 = document.getElementById("tel3");
+	const tel = tel1 + " - " + tel2 + " - " + tel3 ;*/
+	const useridok = document.getElementById("useridok");
+
+	if (userid.value == "") {
+		alert("아이디를 입력하세요")
+		userid.focus();
+		return false;
+
+	} else if (!uidpw.test(userid.value)) {
+		alert("아이디는 4-8자입니다")
+		userid.value = "";
+		userid.focus();
+		return false;
+
+   /*
+   else if(useridok.value==""){
+      alert("아이디 중복 확인을 하세요.");
+      userid.focus();
+      return false;
+   }
+ 
+*/
+
+
+	} else if (userpass.value != "" && !uidpw.test(userpass.value)) {
+		alert("비밀번호는 4- 8자리 입니다.");
+		userpass.value = "";
+		userpass.focus();
+		return false;
+		
+	} else if (!uname.test(username.value)) {
+		alert("이름은 2-15자의 한글과 영문 대소문자만 가능합니다.");
+		username.focus();
+		return false;
+
+	} else if (!uemail.test(useremail.value)) {
+		alert("이메일 형식이 올바르지 않습니다.");
+		useremail.focus();
+		return false;
+
+	} else if (postcode.value == "") {
+		alert("우편번호를 입력해주세요.");
+		postcode.focus();
+		return false;
+	}
+
+	else if (addr.value == "") {
+		alert("주소를 입력해주세요.");
+		addr.focus();
+		return false;
+
+
+	} else if (!utel.test(tel.value)) {
+		alert("전화번호 양식을 맞춰주세요.");
+		tel.focus();
+		return false;
+	}
+//	document.getElementById("tel").value=tel;
+//이상없을 경우 submit
+document.edtregisterform.submit();
+
+
 function loginSubmit(){
 	const form = document.loginform;
     const is_checked = form.huid.checked;
@@ -175,6 +251,4 @@ function isChecked(){
 	  } 
    }
 }
-
-
-
+}

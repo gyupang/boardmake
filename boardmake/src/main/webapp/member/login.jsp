@@ -46,6 +46,6 @@ if(message !=null){
 
 
     </div>
-    <script src= "js/form.js"></script>
-    <script src= "js/key.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src= "js/key.js"></script>
+    <script src= "js/form.js"></script>

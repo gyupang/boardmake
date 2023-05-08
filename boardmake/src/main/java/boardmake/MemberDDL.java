@@ -49,6 +49,51 @@ public class MemberDDL {
 			return false;
 		}
 	}
+//멤버 수정하는 메소드
+	public boolean update(MembersDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DBConnect().getConn();
+			String query = "";
+			String userpass = (String) dto.getUserpass();
+			if (userpass == null || userpass.isEmpty()) {
+				query = "update members set  username=?, useremail=?, postcode=?, addr=?, detailaddr=?, tel=? where userid=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, dto.getUsername());
+				pstmt.setString(2, dto.getUseremail());
+				pstmt.setString(3, dto.getPostcode());
+				pstmt.setString(4, dto.getAddr());
+				pstmt.setString(5, dto.getDetailaddr());
+				pstmt.setString(6, dto.getTel());
+				pstmt.setString(7, dto.getUserid());
+				System.out.println(pstmt);
+				flag = pstmt.executeUpdate();
+			} else {
+				query = "update members setuserpass=?,  username=?, useremail=?, postcode=?, addr=?, detailaddr=?, tel=? where userid=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, dto.getUserpass());
+				pstmt.setString(2, dto.getUsername());
+				pstmt.setString(3, dto.getUseremail());
+				pstmt.setString(4, dto.getPostcode());
+				pstmt.setString(5, dto.getAddr());
+				pstmt.setString(6, dto.getDetailaddr());
+				pstmt.setString(7, dto.getTel());
+				pstmt.setString(8, dto.getUserid());
+				System.out.println(pstmt);
+				flag = pstmt.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (flag > 0) { // 성공
+			return true;
+		} else { // 실패
+			return false;
+		}
+	}
 
 	// select
 	public static Vector<MembersDTO> getSelect(String str) {
