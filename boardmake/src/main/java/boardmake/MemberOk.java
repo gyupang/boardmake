@@ -41,7 +41,7 @@ public class MemberOk extends HttpServlet {
 		dto.setUserpass(userpass);
 		dto.setUsername(username);
 		dto.setUseremail(useremail);
-		dto.setPostcode("0");
+		dto.setPostcode(postcode);
 		dto.setAddr(addr);
 		dto.setDetailaddr(detailaddr);
 		dto.setTel(tel);

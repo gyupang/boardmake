@@ -42,9 +42,10 @@ public class MemUpdate extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String script = null;
 		if (isSuccess) {
-			script = "<script>alert('수정했습니다.');" + "document.location.href='/board';" + "</script>";
+			script = "<script>alert('수정했습니다.');" + "document.location.href='/boardmake';" + "</script>";
 		} else {
-			script = "<script>alert('문제가 발생했습니다. \n 관리자에게 문의해봤자 관리자가 뭘알겠습니까.');" + "document.location.href='/board';"
+			script = "<script>alert('문제가 발생했습니다. \n 관리자에게 문의해봤자 관리자가 뭘알겠습니까.');"
+					+ "document.location.href='/boardmake';"
 					+ "</script>";
 		}
 		out.println("<html><head></head><body>");
