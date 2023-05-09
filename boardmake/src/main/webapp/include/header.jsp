@@ -3,11 +3,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%!String user = null;%>
-<%
-user = (String) session.getAttribute("user");
-%>
-
 
 <!DOCTYPE html>
 <html>
@@ -39,34 +34,28 @@ user = (String) session.getAttribute("user");
 				<div class="col-md-5 text-end">
 					<nav class="top-nav">
 
-
-						<c:choose>
-							<c:when test="${empty sessionScope.user }">
-								<a href="?fname=member/login">로그인</a>
-								<a href="?fname=member/register">회원가입</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/boardmake/LogOut">로그아웃</a>
-								<a href="index.jsp?fname=member/edtregister">회원수정</a>
-							</c:otherwise>
-
-						</c:choose>
-
+                <c:choose>
+                  <c:when test="${sessionScope.level == 0 || empty sessionScope.level}">  
+                    <a href="/boardmake/index.jsp?fname=member/login">로그인</a> |
+                    <a href="/boardmake/index.jsp?fname=member/register">회원가입</a> |
+                  </c:when>
+                  <c:otherwise>
+                   <a href="/boardmake/LogOut">로그아웃</a> |
+                   <a href="/boardmake/index.jsp?fname=member/edtregister">회원수정</a>
+                  </c:otherwise>
+                </c:choose>
+                <c:if test="${sessionScope.level == 99 }">
+                   <a href="/boardmake/index.jsp?fname=member/edtregister">회원관리</a>
+                </c:if>
 
 					</nav>
-
 				</div>
 			</div>
 			<div class="row">
 				<nav class="navi pb-3 text-center">
 					<a href="#">공지사항</a> <a href="#">갤러리</a> <a href="#">컬럼게시판</a> <a
 						href="#">자유게시판</a>
-
-
 				</nav>
-
 			</div>
-
-
 		</div>
 	</header>

@@ -7,6 +7,7 @@
 <jsp:useBean id="dto" class="boardmake.MembersDTO" scope="page" />
 
 <%
+String str = null;
 String user =  (String)session.getAttribute("user");
 
 Vector data =mem.getSelect(user);
