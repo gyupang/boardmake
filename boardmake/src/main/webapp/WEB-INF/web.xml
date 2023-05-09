@@ -13,16 +13,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MemberLogin</display-name>
-    <servlet-name>MemberLogin</servlet-name>
-    <servlet-class>boardtest.MemberLogin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberLogin</servlet-name>
-    <url-pattern>/MemberLogin</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>LogOut</display-name>
     <servlet-name>LogOut</servlet-name>
     <servlet-class>boardtest.LogOut</servlet-class>
@@ -66,6 +56,16 @@
   <servlet-mapping>
     <servlet-name>FindIdPw</servlet-name>
     <url-pattern>/FindIdPw</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemUpdate</display-name>
+    <servlet-name>MemUpdate</servlet-name>
+    <servlet-class>boardtest.MemUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemUpdate</servlet-name>
+    <url-pattern>/MemUpdate</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

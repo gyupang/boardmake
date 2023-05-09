@@ -20,7 +20,7 @@ if(message !=null){
 %>
 
  <div id="logreg-forms">
-        <form class="form-signin" name="loginform" action="/boardmake/MemberLogin" method="post">
+        <form class="form-signin" name="loginform" action="/boardmake/MembersLogin" method="post">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
             <div class="social-login">
                 <button class="btn facebook-btn social-btn" type="button"><span><i class="fa-solid fa-k"></i> Sign in with Kakao</span> </button>

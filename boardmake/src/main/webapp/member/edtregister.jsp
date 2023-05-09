@@ -22,7 +22,7 @@ for(int i=0; i < size; i++){
 
 
  <div id="logreg-forms">
- <form action="/boardmake/MemberOk" class="form-signup" method="post" name="edtregisterform">
+ <form action="/boardmake/MemUpdate" class="form-signup" method="post" name="edtregisterform">
  <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign Up</h1>
 <!--                 <div class="social-login">
                     <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign up with Facebook</span> </button>
