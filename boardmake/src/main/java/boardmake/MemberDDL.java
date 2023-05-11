@@ -108,25 +108,25 @@ public class MemberDDL {
 		}
 	}
 
-	// Allselect
+	// AllSelect
 	public static int getAllSelect() {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
 		String sql = null;
-		int allCount =0;
-		sql = "select count (*) from members";
+		int allCount = 0;
+		sql = "select count(*) from members";
 		try {
+
 			conn = new DBConnect().getConn();
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while (rs.next()) {
 				allCount = rs.getInt(1);
 			}
-
-			} catch (Exception e) {
-
-		}    finally {
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
 				if (rs != null)
 					rs.close();
@@ -136,10 +136,10 @@ public class MemberDDL {
 					conn.close();
 			} catch (SQLException e) {
 			}
+		}
 
+		return allCount;
 	}
-	return allCount;
-}
 
 	// select
 	public static Vector<MembersDTO> getSelect(String str) {

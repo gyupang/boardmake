@@ -45,7 +45,7 @@
                   </c:otherwise>
                 </c:choose>
                 <c:if test="${sessionScope.level == 99 }">
-                   <a href="/boardmake/index.jsp?fname=member/edtregister">회원관리</a>
+                  <a href="/board/index.jsp?fname=member/memberlist">회원관리</a>
                 </c:if>
 
 					</nav>

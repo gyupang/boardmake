@@ -38,35 +38,33 @@ public class FindIdPw extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		request.setCharacterEncoding("UTF-8");
 		out.println("<html><head><title>아이디/패스워드검색</title>");
-		out.println(
-				"<link rel=\"stylesheet\" href=\"css/bootstrap.css\" /></head><body><div class=\"container text-center\">");
+		out.println("<link rel=\"stylesheet\" href=\"css/bootstrap.css\" />");
+		out.println("</head><body><div class=\"container text-center mt-3 pt-2\">");
 		if (size == 0) {
-			out.println("<div class=\"text-danger\">아이디를 찾을수 없습니다</div>");
+			out.println("<div class=text-danger>아이디를 찾을 수 없습니다.</div>");
 			out.println("<a href=\"/boardmake/member/findIdPw.jsp\">다시시도</a>");
-			out.println("<a href=\"javascript:void(0)\" onclick=\"javascript:self.close();\">닫기</a>");
+			out.println("<a href=\"javascript:void(0)\" onclick=\"javascript:self.close()\">닫기</a>");
 
 		} else {
 			if (opt == 1) {
-				out.println("<p>고객님의 아이디는 ");
-				out.println(rs1);
-				out.println("입니다.");
-				out.println("<a href=\"javascript:void(0)\" onclick=\"opener.document.getElementById('userid').value='"
-						+ rs1 + "'\">");
-				out.println("아이디사용</a></p>");
-
+				out.print("<p>고객님의 아이디 는");
+				out.print(rs1);
+				out.println("입니다.</p>");
+				out.print("<p><a href=\"javascript:void(0)\" onclick=\"opener.document.getElementById('userid').value='"
+						+ rs1 + "'; self.close();\">");
+				out.println("아이디 사용</a></p>");
 			} else {
-				out.println("<p>고객님의 비밀번호는 ");
-				out.println(rs2);
-				out.println("입니다.");
-				out.println(
-						"<a href=\"javascript:void(0)\" onclick=\"opener.document.getElementById('userpass').value='"
-						+ rs1 + "'\">");
-				out.println("비밀번호사용</a></p>");
-
+				out.print("<p>고객님의 비밀번호 는");
+				out.print(rs2);
+				out.println("입니다.</p>");
+				out.print(
+						"<p><a href=\"javascript:void(0)\" onclick=\"opener.document.getElementById('userpass').value='"
+								+ rs2 + "'; self.close();\">");
+				out.println("비밀번호 사용</a></p>");
 			}
 		}
-			out.println("</body></html>");
+		out.println("</div>");
+		out.println("</body></html>");
 		}
-		
-	}
 
+	}

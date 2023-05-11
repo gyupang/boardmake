@@ -31,62 +31,84 @@ int size = data.size();
 <div class="container lmember">
 	<h1 class="mt-3 mb-3 text-center">회원 목록 (관리자 전용)</h1>
 	<div class="text-end">
-	총 회원 : <%= maxColumn %>
+	총 회원 : <%= maxColumn %>명.
 	</div>
-	
-	
+		
 	<div class="row">
 		<table class="table table-striped memberstbl">
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>주소</th>
-					<th>전화번호</th>
-
-				</tr>
-
-
-			</thead>
+         <thead>
+            <tr>
+               <th>번호</th>
+               <th>아이디</th>
+               <th>이름</th>
+               <th>주소</th>
+               <th>전화번호</th>
+               <th>가입일</th>
+               <th>회원등급</th>
+            </tr>
+         </thead>
+         <tbody>
 <%
 for (int i = 0; i < size; i++) {
 	MembersDTO dt = (MembersDTO) data.elementAt(i);
 int num = dt.getNum();
 String userid = dt.getUserid();
 String username = dt.getUsername();
-String postcade = dt.getPostcode();
+String postcode = dt.getPostcode();
 String addr = dt.getAddr();
-String detailaddr = dt.getDetailaddr();
-String useremail = dt.getUseremail();
+String detailAddr = dt.getDetailaddr();
 String tel = dt.getTel();
 String wdate=dt.getWdate();
 int level = dt.getLevel();
-}
+
 %>
 	
-		<tr>
-			<td><%= num %></td>
-			<td><%= userid %></td>
-			<td><%=username %></td>
-			<td><%=postcade %><%= addr %><%=detailaddr %></td>
-			<td><%= wdate %></td>
-			<td><%= tel %></td>
-		</tr>
-		
-		
-		
-		<select name = "level" class="level">
-		<option value="0" <%=selected1 %>>탈퇴회원</option>
-		<option value="1" <%=selected2 %>>일반회원</option>
-		<option value="2" <%=selected3 %>>유료회원</option>
-		<option value="3" <%=selected4 %>>VIP회원</option>
-		<option value="99" <%=selected5 %>>관리자</option>
-				</select>
-		
-		
+       <tr>
+          <td><%=num %></td>
+          <td><%=userid %></td>
+          <td><%=username %></td>
+          <td>[<%=postcode %>] <%=addr %> <%=detailAddr %></td>
+          <td><%=tel %></td>
+          <td><%=wdate %></td>
+          <td>
+		            <%
+              String selected1="", selected2="", selected3="", selected4="", selected5="";
+              switch(level){
+                case 0:
+            	  selected1 = "selected";
+                break;
+                case 1:
+            	  selected2 = "selected";
+                break;
+                case 2:
+            	  selected3 = "selected";
+                break;
+                case 3:
+            	  selected4 = "selected";
+                break;
+                case 99:
+            	  selected5 = "selected";
+                break;      
 
-		</table>
+              }
+            %>
+		
+            <select name="level" class="level">
+               <option value="0" <%=selected1 %>>탈퇴회원</option>
+               <option value="1" <%=selected2 %>>일반회원</option>
+               <option value="2" <%=selected3 %>>유료회원</option>
+               <option value="3" <%=selected4 %>>VIP회원</option>
+               <option value="99" <%=selected5 %>>관리자</option>
+            </select>    
+          </td>
+       </tr>
+	<%
+       }
+%>	
+		
+         </tbody>
+      
+      </table> 
 	</div>
 
 </div>
