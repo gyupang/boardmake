@@ -188,3 +188,10 @@ display: inline-block;
     }
     
 }
+
+/* -------------회원 목록---------- */
+
+.memberstbl, lmember{
+	margin-bottom: 40px;
+	
+}

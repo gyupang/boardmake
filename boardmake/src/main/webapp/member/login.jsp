@@ -32,10 +32,10 @@ if(message !=null){
             <input type="password" id="userpass" name="userpass" class="form-control" placeholder="Password" required="">
             
             <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt" onclick="loginSubmit();"></i> Sign in</button>
-            <a href="#" id="forgot_pswd">Forgot password?</a>
+            <a href="/boardmake/index.jsp?fname=member/findIdPw" id="forgot_pswd">Forgot password?</a>
             <hr>
             <!-- <p>Don't have an account!</p>  -->
-            <a href="?fname=register"><button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button></a>
+            <a href="/boardmake/index.jsp?fname=member/edtregister"><button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i> Sign up New Account</button></a>
             </form>
 
 <!--             <form action="/reset/password/" class="form-reset">
