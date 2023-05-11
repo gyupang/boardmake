@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="boardmake.MembersDTO"%>
 <%@page import="java.util.*"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="mem" class="boardmake.MemberDDL" scope="page" />
 <jsp:useBean id="dto" class="boardmake.MembersDTO" scope="page" />
 
