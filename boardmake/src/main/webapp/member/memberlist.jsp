@@ -25,13 +25,22 @@ Vector data = mem.getSelect(limitNum, listNum);
 int maxColumn = mem.getAllSelect();
 int size = data.size();
 
+/* 
+1. 전체 페이지 수, 2. 전체 블록수 , 3, 현재 블록번호 , 4. 블록당 시작번호 , 5. 블록당 마지막 번호
+ */
+ int totalPage = (int) Math.ceil(maxColumn/ (double)listNum);
+ int totalBlock = (int) Math.ceil(totalPage/ (double)pageNum);
+ int nowBlock = (int) Math.ceil(mypg/(double)pageNum);
+ int startNum = (nowBlock -1) * pageNum +1;
+ int endNum = nowBlock * pageNum;
+ if(endNum>totalPage) endNum = totalPage;
 
 %>
 
 <div class="container lmember">
 	<h1 class="mt-3 mb-3 text-center">회원 목록 (관리자 전용)</h1>
 	<div class="text-end">
-	총 회원 : <%= maxColumn %>명.
+	총 회원 : <%= maxColumn %>명
 	</div>
 		
 	<div class="row">
@@ -71,8 +80,13 @@ int level = dt.getLevel();
           <td><%=tel %></td>
           <td><%=wdate %></td>
           <td>
-		            <%
-              String selected1="", selected2="", selected3="", selected4="", selected5="";
+          <%
+          if(level ==99){
+        	            %>
+          
+          
+		            <% 
+              String selected1="", selected2="", selected3="", selected4="";
               switch(level){
                 case 0:
             	  selected1 = "selected";
@@ -86,19 +100,18 @@ int level = dt.getLevel();
                 case 3:
             	  selected4 = "selected";
                 break;
-                case 99:
-            	  selected5 = "selected";
-                break;      
-
+                
               }
             %>
 		
-            <select name="level" class="level">
+		
+		
+		
+            <select name="level" class="level" onchange="memLevel(this, <%=level%>);">
                <option value="0" <%=selected1 %>>탈퇴회원</option>
                <option value="1" <%=selected2 %>>일반회원</option>
                <option value="2" <%=selected3 %>>유료회원</option>
                <option value="3" <%=selected4 %>>VIP회원</option>
-               <option value="99" <%=selected5 %>>관리자</option>
             </select>    
           </td>
        </tr>
@@ -110,6 +123,37 @@ int level = dt.getLevel();
       
       </table> 
 	</div>
+	
+	<div class="my-5 row">
+	<ul class="pagination justify-content-center">
+  
+  <%
+  //이전 페이지
+  if(startNum >1){
+	  int prevPage = startNum -1;
+	  out.print("<li class=\"page-item\"><a class=\"page-link\" href='/boardmake/index.jsp?fname=member/memberlist&page=" + prevPage +"'>이전</a></li>");
+
+	  	  
+  }
+  //페이지 출력
+  for(int i = startNum; i<=endNum; i++){
+	  String act="";
+	  if(mypg ==i) act = "active";
+	  %>
+	  <li class="page-item <%= act %>"><a class="page-link" href="/boardmake/index.jsp?fname=member/memberlist&page=<%=i %>"><%=i %></a> </li>
+	  
+	  <%
+	  	    }
+    //다음 페이지
+  
+  %>
+  
+  
+  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+</ul></div>
+	
+	
+	
 
 </div>
 

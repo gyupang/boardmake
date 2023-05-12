@@ -77,4 +77,14 @@
     <servlet-name>MembersLogin</servlet-name>
     <url-pattern>/MembersLogin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LevelUpdate</display-name>
+    <servlet-name>LevelUpdate</servlet-name>
+    <servlet-class>boardtest.LevelUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LevelUpdate</servlet-name>
+    <url-pattern>/LevelUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>
