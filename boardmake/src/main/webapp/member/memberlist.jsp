@@ -40,7 +40,7 @@ int size = data.size();
 <div class="container lmember">
 	<h1 class="mt-3 mb-3 text-center">회원 목록 (관리자 전용)</h1>
 	<div class="text-end">
-	총 회원 : <%= maxColumn %>명
+	총 회원 : <%=maxColumn %>명/<%=totalPage%>페이지
 	</div>
 		
 	<div class="row">
@@ -81,13 +81,14 @@ int level = dt.getLevel();
           <td><%=wdate %></td>
           <td>
           <%
-          if(level ==99){
-        	            %>
-          
-          
-		            <% 
-              String selected1="", selected2="", selected3="", selected4="";
-              switch(level){
+          if(level == 99) { 
+              %> 
+           	 <span class="badge bg-danger px-4 py-2">관리자</span> 
+              <%
+              }else{	  
+           	   
+              String selected1="", selected2="", selected3="", selected4="";              
+               switch(level){
                 case 0:
             	  selected1 = "selected";
                 break;
@@ -115,9 +116,10 @@ int level = dt.getLevel();
             </select>    
           </td>
        </tr>
-	<%
-       }
-%>	
+<%
+         }
+       }       
+%>
 		
          </tbody>
       
@@ -132,9 +134,12 @@ int level = dt.getLevel();
   if(startNum >1){
 	  int prevPage = startNum -1;
 	  out.print("<li class=\"page-item\"><a class=\"page-link\" href='/boardmake/index.jsp?fname=member/memberlist&page=" + prevPage +"'>이전</a></li>");
-
 	  	  
+  }else{
+ 	 out.print("<li class=\"page-item\"><a class=\"page-link text-muted\" href=\"javascript:void(0)\">이전</a></li>");
   }
+  
+  
   //페이지 출력
   for(int i = startNum; i<=endNum; i++){
 	  String act="";
@@ -144,13 +149,17 @@ int level = dt.getLevel();
 	  
 	  <%
 	  	    }
-    //다음 페이지
-  
-  %>
-  
-  
-  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-</ul></div>
+  //다음 페이지
+  if(endNum < totalPage) {
+ 	 int nextPage=endNum + 1;
+ 	 out.print("<li class=\"page-item\"><a class=\"page-link\" href=\"?fname=member/memberlist&page="+nextPage+"\">다음</a></li>");
+  }else{
+ 	 out.print("<li class=\"page-item\"><a class=\"page-link text-muted\" href=\"javascript:void(0)\">다음</a></li>");
+  }
+%>
+</ul>
+
+</div>
 	
 	
 	

@@ -2,6 +2,7 @@ package boardtest;
 
 import java.io.IOException;
 
+import boardmake.MemberDDL;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,14 @@ public class LevelUpdate extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		MemberDDL ddl = new MemberDDL();
+		int level = Integer.parseInt(request.getParameter("level"));
+		int num = Integer.parseInt(request.getParameter("num"));
+
+		response.setContentType("text/html;charset=UTF-8");
+
+
 	}
 
 

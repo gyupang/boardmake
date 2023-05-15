@@ -28,7 +28,7 @@
 				<div class="col-md-5"></div>
 				<div class="col-md-2 text-center">
 					<h1>
-						<a href="index.jsp" class="brand">My BBS</a>
+						<a href="/boardmake/index.jsp?fname=main" class="brand">My BBS</a>
 					</h1>
 				</div>
 				<div class="col-md-5 text-end">
@@ -54,7 +54,7 @@
 			<div class="row">
 				<nav class="navi pb-3 text-center">
 					<a href="#">공지사항</a> <a href="#">갤러리</a> <a href="#">컬럼게시판</a> <a
-						href="#">자유게시판</a>
+						href="/boardmake/index.jsp?fname=freeBoard">자유게시판</a>
 				</nav>
 			</div>
 		</div>
