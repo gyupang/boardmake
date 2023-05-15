@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1</td>
+                    <td>1 </td>
                     <td>박진수</td>
                     <td>First Post</td>
                     <td>This is the content of the first post.</td>
