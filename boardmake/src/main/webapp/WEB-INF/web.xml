@@ -87,4 +87,14 @@
     <servlet-name>LevelUpdate</servlet-name>
     <url-pattern>/LevelUpdate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>WriteProcess</display-name>
+    <servlet-name>WriteProcess</servlet-name>
+    <servlet-class>boardtest.WriteProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WriteProcess</servlet-name>
+    <url-pattern>/WriteProcess</url-pattern>
+  </servlet-mapping>
 </web-app>

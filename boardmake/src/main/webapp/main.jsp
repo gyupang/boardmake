@@ -1,3 +1,4 @@
+<%@page import="boardmake.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="boardmake.MembersDTO"%>
@@ -5,6 +6,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:useBean id="mem" class="boardmake.MemberDDL" scope="page" />
 <jsp:useBean id="dto" class="boardmake.MembersDTO" scope="page" />
+<jsp:useBean id="bdr" class="boardmake.BoardDDL" scope="page" />
+<jsp:useBean id="bdto" class="boardmake.BoardDTO" scope="page" />
 <div class="container">
    <div class="row">
       <div class="col-md-6 col-6 mb-3 p-5">
@@ -22,18 +25,26 @@
            </ol>
            
           <h2 class="text-center mb-4 mt-4">자유게시판</h2>
-           <ol class="list-group list-group-numbered">
-           <%
-             for(int i=0; i< 5; i++){
-           %>
+           <ol class="list-group">
+   <% 
+    Vector<BoardDTO> data = bdr.getSelect();    
+    Collections.reverse(data);
+
+    int startIndex = data.size();
+    int endIndex = Math.max(startIndex - 5, 0);
+
+    for (int i = startIndex - 1; i >= endIndex; i--) {
+      BoardDTO board = data.get(i);
+    
+    %>
+   
              <li class="list-group-item list-group-item-action">
-                 <a href="#"> 공지사항 1입니다. </a>
-             </li>    
-           <%
-             }
-           %>  
+             <a href="#"><%= board.getTitle() %></a>
+        </li>
+    <% } %>
            </ol>
       </div>
+      
       <div class="col-md-6 col-6 my-5">
           <h2 class="text-center mb-4">갤러리</h2>
           <div class="row">
