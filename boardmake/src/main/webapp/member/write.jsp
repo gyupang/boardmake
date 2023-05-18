@@ -6,17 +6,20 @@
 <jsp:useBean id="dto" class="boardmake.MembersDTO" scope="page" />
 
    <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
-    if (form.title.value == "") {
-        alert("제목을 입력하세요.");
-        form.title.focus();
-        return false;
-    }
-    if (form.content.value == "") {
-        alert("내용을 입력하세요.");
-        form.content.focus();
-        return false;
-    }
+   function validateForm(form) {
+	    if (form.title.value == "") {
+	        alert("제목을 입력하세요.");
+	        form.title.focus();
+	        return false;
+	    }
+	    if (form.content.value == "") {
+	        alert("내용을 입력하세요.");
+	        form.content.focus();
+	        return false;
+	    }
+	  
+	    return true; // 폼의 유효성 검사가 완료되었으므로 true를 반환합니다.
+	}
     
    <%--  <%
     dto.setUserid(request.getParameter("userid"));
@@ -37,6 +40,7 @@ function validateForm(form) {  // 폼 내용 검증
         	<h1 class="mt-3 mb-3 text-center">글쓰기</h1>
 
 <form action="WriteProcess" method="post" onsubmit="return validateForm(this);">
+
       <table class="table">
         <tr>
 
@@ -70,3 +74,4 @@ function validateForm(form) {  // 폼 내용 검증
 
 </form>
 </div>
+
