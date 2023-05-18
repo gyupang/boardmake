@@ -20,6 +20,17 @@ for(int i=0; i < size; i++){
 
 %>
 
+    ${dto.username} 회원님, 로그인하셨습니다.<br />
+        <a href="Logout.jsp">[로그아웃]</a>
+         <h2>Session 설정 확인</h2>
+    <ul>
+        <li>세션 유지 시간 : <%= session.getMaxInactiveInterval() %></li>
+        <li>세션 아이디 : <%= session.getId() %></li>
+        <li>세션 값 : ${dto.userid}</li>
+
+    </ul>
+
+
 
  <div id="logreg-forms">
  <form action="/boardmake/MemUpdate" class="form-signup" method="post" name="edtregisterform">
@@ -49,7 +60,7 @@ for(int i=0; i < size; i++){
   </div>
   <div class="form-group">
     <label for="postcode">Postcode:</label><br>
-    <input type="text" class="form-control" id="postcode" name="postcode">
+    <input type="text" class="form-control" id="postcode" name="postcode"  value="${dto.postcode}">
  <input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
   </div>
   <div class="form-group">
@@ -72,7 +83,7 @@ for(int i=0; i < size; i++){
 <input type="hidden"  name="useridok" id="useridok" />
 
 
-                <button  type="button" class="btn btn-success btn-block" onclick="register2();"><i class="fas fa-user-plus"></i> Sign Up</button>
+                <button  type="button" class="btn btn-success btn-block" onclick="register2();"><i class="fas fa-user-plus"></i> 정보 수정</button>
                 <a href="index.jsp" id="cancel_signup"><i class="fas fa-angle-left"></i> Back</a>
             </form>
             </div>

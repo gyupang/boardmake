@@ -28,7 +28,6 @@
            <ol class="list-group">
    <% 
     Vector<BoardDTO> data = bdr.getSelect();    
-    Collections.reverse(data);
 
     int startIndex = data.size();
     int endIndex = Math.max(startIndex - 5, 0);

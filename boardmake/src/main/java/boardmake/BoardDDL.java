@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Vector;
 
 public class BoardDDL {
@@ -105,7 +106,8 @@ public class BoardDDL {
 			pstmt.setString(3, dto.getUserpass());
 			pstmt.setString(4, dto.getUsername());
 			pstmt.setString(5, dto.getUseremail());
-			pstmt.setTimestamp(6, Timestamp.valueOf(dto.getWdate()));
+			pstmt.setTimestamp(6, dto.getWdate() != null ? Timestamp.valueOf(dto.getWdate())
+					: Timestamp.valueOf(LocalDateTime.now()));
 			pstmt.setString(7, dto.getUip());
 			pstmt.setInt(8, dto.getCount());
 			pstmt.setString(9, dto.getTitle());

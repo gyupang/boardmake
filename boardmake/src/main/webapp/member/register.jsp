@@ -46,7 +46,7 @@
   </div>
   <div class="form-group">
     <label for="tel">Phone:</label>
-    <input type="text" class="form-control" id="tel" name="tel" placeholder="01000000000">
+    <input type="text" class="form-control" id="tel" name="tel" placeholder="010-0000-0000">
   </div>
 
 <input type="hidden"  name="useridok" id="useridok" />

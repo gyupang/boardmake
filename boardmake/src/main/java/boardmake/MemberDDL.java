@@ -51,7 +51,35 @@ public class MemberDDL {
 			return false;
 		}
 	}
-//멤버 수정하는 메소드
+
+	// 멤버 수정하는 메소드
+	public int update(int level, int num) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DBConnect().getConn();
+			String query = "";
+			query = "update members set level=? where num=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, level);
+			pstmt.setInt(2, num);
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+			}
+		}
+		return flag;
+	}
+
+//멤버 수정하는 메소드 2 
 	public boolean update(MembersDTO dto, String user) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -75,7 +103,7 @@ public class MemberDDL {
 				// pstmt.setString(7, dto.getUserid());
 
 			} else {
-				query = "update members setuserpass=?,  username=?, useremail=?, postcode=?, addr=?, detailaddr=?, tel=?, uip=?, wdate=? where userid=?";
+				query = "update members set userpass=?,  username=?, useremail=?, postcode=?, addr=?, detailaddr=?, tel=?, uip=?, wdate=? where userid=?";
 				pstmt = conn.prepareStatement(query);
 				pstmt.setString(1, dto.getUserpass());
 				pstmt.setString(2, dto.getUsername());
@@ -155,7 +183,7 @@ public class MemberDDL {
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, str);
 		rs = ps.executeQuery();
-		if (rs.next()) {
+
 			while (rs.next()) {
 				MembersDTO mb = new MembersDTO();
 				mb.setNum(rs.getInt("num"));
@@ -171,7 +199,7 @@ public class MemberDDL {
 				mb.setUip(rs.getString("uip"));
 				mb.setWdate(rs.getString("wdate"));
 				data.add(mb);
-			}
+
 		}
 	} catch (SQLException e) {
 	}

@@ -39,7 +39,7 @@ public class WriteProcess extends HttpServlet {
 		int iResult = ddl.insertWrite(dto);
 
 		if (iResult == 1) {
-			response.sendRedirect("notice.jsp");
+			response.sendRedirect("/boardmake/index.jsp?fname=freeBoard");
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

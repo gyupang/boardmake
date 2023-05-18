@@ -41,3 +41,4 @@ Collections.reverse(data);
         
         <input type="button" value="글쓰기" onclick="location.href='?fname=member/write'" class="btn btn-secondary btn-sm">
     </div>
+

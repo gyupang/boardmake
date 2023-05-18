@@ -1,6 +1,7 @@
 package boardmake;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -48,11 +49,19 @@ public class MemberOk extends HttpServlet {
 		dto.setUip();
 
 		boolean isSuccess = ddl.insert(dto);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
+		String script = null;
 		if (isSuccess) {
-			System.out.println("인서트 성공");
+			script = "<script>alert('가입했습니다.');" + "document.location.href='/boardmake';" + "</script>";
 		} else {
-			System.out.println("인서트 실패");
+			script = "<script>alert('문제가 발생했습니다. \n 관리자에게 문의해주세요.');" + "document.location.href='/boardmake';"
+					+ "</script>";
 		}
+		out.println("<html><head></head><body>");
+		out.println(script);
+		out.println("</body></html>");
 
 		doGet(request, response);
 	}
