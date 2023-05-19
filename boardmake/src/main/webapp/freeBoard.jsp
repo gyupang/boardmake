@@ -7,10 +7,22 @@
 <jsp:useBean id="bdto" class="boardmake.BoardDTO" scope="page" />
 
 <%
+HttpSession session1 = request.getSession();
+Enumeration<String> attributeNames = session1.getAttributeNames();
+
+while (attributeNames.hasMoreElements()) {
+    String attributeName = attributeNames.nextElement();
+    Object attributeValue = session1.getAttribute(attributeName);
+    out.println("속성명: " + attributeName + ", 속성값: " + attributeValue);
+}
+
+
+
 // getSelect 메서드를 호출하여 데이터 가져오기
 Vector<BoardDTO> data = bdr.getSelect();    
 Collections.reverse(data);
 %>
+
   
     <div class="container">
         	<h1 class="mt-3 mb-3 text-center">게시판</h1>
