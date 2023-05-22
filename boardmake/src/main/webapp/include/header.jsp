@@ -53,7 +53,7 @@
 			</div>
 			<div class="row">
 				<nav class="navi pb-3 text-center">
-					<a href="#">공지사항</a> <a href="#">갤러리</a> <a href="#">컬럼게시판</a> <a
+					<a href="/boardmake/index.jsp?fname=notice">공지사항</a> <a href="#">갤러리</a>  <a
 						href="/boardmake/index.jsp?fname=freeBoard">자유게시판</a>
 				</nav>
 			</div>

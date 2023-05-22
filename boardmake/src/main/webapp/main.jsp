@@ -12,22 +12,27 @@
    <div class="row">
       <div class="col-md-6 col-6 mb-3 p-5">
            <h2 class="text-center mb-4">공지사항</h2>
-           <ol class="list-group list-group-numbered">
-           <%
-             for(int i=0; i< 5; i++){
-           %>
+           <ol class="list-group">
+   <% 
+    Vector<BoardDTO> data0 = bdr.getSelect0();    
+
+    int startIndex0 = data0.size();
+    int endIndex0 = Math.max(startIndex0 - 5, 0);
+
+    for (int i = startIndex0 - 1; i >= endIndex0; i--) {
+      BoardDTO board0 = data0.get(i);
+    
+    %>
              <li class="list-group-item list-group-item-action">
-                 <a href="#"> 공지사항 1입니다. </a>
-             </li>    
-           <%
-             }
-           %>  
+                             <a href="/boardmake/index.jsp?fname=notice"><%= board0.getTitle() %></a>
+        </li>
+    <% } %>
            </ol>
            
           <h2 class="text-center mb-4 mt-4">자유게시판</h2>
            <ol class="list-group">
    <% 
-    Vector<BoardDTO> data = bdr.getSelect();    
+    Vector<BoardDTO> data = bdr.getSelect1();    
 
     int startIndex = data.size();
     int endIndex = Math.max(startIndex - 5, 0);
@@ -38,7 +43,7 @@
     %>
    
              <li class="list-group-item list-group-item-action">
-             <a href="#"><%= board.getTitle() %></a>
+             <a href="/boardmake/index.jsp?fname=freeBoard"><%= board.getTitle() %></a>
         </li>
     <% } %>
            </ol>

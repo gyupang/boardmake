@@ -32,9 +32,15 @@ public class WriteProcess extends HttpServlet {
 		BoardDDL ddl = new BoardDDL();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String userid = request.getParameter("userid");
+		int bbsnum = Integer.parseInt(request.getParameter("bbsnum"));
+		String uip = request.getParameter("uip");
 
 		dto.setTitle(title);
 		dto.setContent(content);
+		dto.setBbsnum(bbsnum);
+		dto.setUserid(userid);
+		dto.setUip(uip);
 
 		int iResult = ddl.insertWrite(dto);
 

@@ -8,14 +8,14 @@
 
 <%
 
-// getSelect1 메서드를 호출하여 데이터 가져오기
-Vector<BoardDTO> data = bdr.getSelect1();    
+// getSelect0 메서드를 호출하여 데이터 가져오기
+Vector<BoardDTO> data = bdr.getSelect0();    
 Collections.reverse(data);
 %>
 
   
     <div class="container">
-        	<h1 class="mt-3 mb-3 text-center">게시판</h1>
+        	<h1 class="mt-3 mb-3 text-center">공지사항</h1>
         <table class="table">
             <thead>
                 <tr>
@@ -31,9 +31,7 @@ Collections.reverse(data);
             <% for (BoardDTO board : data) { %>
                 <tr>
                     <td><%= board.getNum() %></td>
-                    <td>
-                    <a href="index.jsp?fname=member/view&num=<%= board.getNum() %>">
-                    <%= board.getTitle() %></a></td>
+                    <td><%= board.getTitle() %></td>
                     <td><%= board.getContent() %></td>
                     <td><%= board.getUserid() %></td>
                     <td><%= board.getWdate().toLocalDate() %></td>
@@ -43,6 +41,12 @@ Collections.reverse(data);
         </tbody>
         </table>
         
-        <input type="button" value="글쓰기" onclick="location.href='?fname=member/write'" class="btn btn-secondary btn-sm">
+<% 
+    String user = (String) session.getAttribute("user");
+    if ("admin".equals(user)) { 
+%>
+    <input type="button" value="글쓰기" onclick="location.href='?fname=member/write0'" class="btn btn-secondary btn-sm">
+<% } %>
+
     </div>
 

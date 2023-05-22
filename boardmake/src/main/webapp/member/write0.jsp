@@ -17,10 +17,19 @@
 	        form.content.focus();
 	        return false;
 	    }
+	    
+	    var user = "<%=session.getAttribute("user")%>";
+	 // user 값 가져오기
+	    if (user !== "admin") { // user 값이 "admin"이 아닌 경우
+	    	  alert("권한이 없습니다.");
+		        return false;
+		    }
+	    
 	  
 	    return true; // 폼의 유효성 검사가 완료되었으므로 true를 반환합니다.
 	}
-   
+    
+
         
 </script>
 
@@ -62,14 +71,10 @@
 						onclick="location.href='?fname=freeBoard';">목록 보기</button>
 				</td>
 			</tr>
-			<%
-String userId = (String) session.getAttribute("user");
-if (userId == null) {
-    userId = "비회원";
-}
-%>
-			<input type="hidden" name="userid" value="<%= userId %>">
-			<input type="hidden" name="bbsnum" value="1">
+
+			<input type="hidden" name="userid"
+				value="<%=session.getAttribute("user")%>">
+			<input type="hidden" name="bbsnum" value="0">
 			<input type="hidden" name="uip" value="<%= request.getRemoteAddr() %>">
 
 
