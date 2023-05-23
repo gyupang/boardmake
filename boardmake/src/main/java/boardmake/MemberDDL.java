@@ -10,18 +10,14 @@ import java.util.Vector;
 public class MemberDDL {
 	// 멤버 테이블에 글 등록 하는 메소드
 	public boolean insert(MembersDTO dto) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+
 		int flag = 0;
-		try {
-			// conn = DBConnect.initConnection(); // Connection 객체에서 conn 받아오기
-			conn = new DBConnect().getConn();
+		String query = "insert into members"
+				+ "(userid, userpass, username, useremail, postcode, addr, detailaddr, tel, uip)" + "values"
+				+ "(?,?,?,?,?,?,?,?,?)";
 
-			String query = "insert into members"
-					+ "(userid, userpass, username, useremail, postcode, addr, detailaddr, tel, uip)" + "values"
-					+ "(?,?,?,?,?,?,?,?,?)";
-
-			pstmt = conn.prepareStatement(query);
+		// conn = DBConnect.initConnection(); // Connection 객체에서 conn 받아오기
+		try (Connection conn = new DBConnect().getConn(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setString(1, dto.getUserid());
 			pstmt.setString(2, dto.getUserpass());
 			pstmt.setString(3, dto.getUsername());
@@ -36,14 +32,6 @@ public class MemberDDL {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-			}
 		}
 		if (flag > 0) { // 성공
 			return true;
@@ -54,27 +42,15 @@ public class MemberDDL {
 
 	// 멤버 수정하는 메소드
 	public int update(int level, int num) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+
 		int flag = 0;
-		try {
-			conn = new DBConnect().getConn();
-			String query = "";
-			query = "update members set level=? where num=?";
-			pstmt = conn.prepareStatement(query);
+		String query = "update members set level=? where num=?";
+		try (Connection conn = new DBConnect().getConn(); PreparedStatement pstmt = conn.prepareStatement(query)) {
 			pstmt.setInt(1, level);
 			pstmt.setInt(2, num);
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-			}
 		}
 		return flag;
 	}
@@ -138,52 +114,30 @@ public class MemberDDL {
 
 	// AllSelect
 	public static int getAllSelect() {
-		Connection conn = null;
-		Statement st = null;
-		ResultSet rs = null;
-		String sql = null;
-		int allCount = 0;
-		sql = "select count(*) from members";
-		try {
 
-			conn = new DBConnect().getConn();
-			st = conn.createStatement();
-			rs = st.executeQuery(sql);
+		int allCount = 0;
+		String sql = "select count(*) from members";
+
+		try (Connection conn = new DBConnect().getConn();
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sql)) {
 			while (rs.next()) {
 				allCount = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (st != null)
-					st.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-			}
 		}
-
 		return allCount;
 	}
 
 	// select
 	public static Vector<MembersDTO> getSelect(String str) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = null;
-		sql = "select * from members where userid=?";
+
+		String sql = "select * from members where userid=?";
 		Vector<MembersDTO> data = new Vector<>();
-		conn = new DBConnect().getConn();
-		 try {
-
-		ps = conn.prepareStatement(sql);
+		try (Connection conn = new DBConnect().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
 		ps.setString(1, str);
-		rs = ps.executeQuery();
-
+			try (ResultSet rs = ps.executeQuery()) {
 			while (rs.next()) {
 				MembersDTO mb = new MembersDTO();
 				mb.setNum(rs.getInt("num"));
@@ -199,29 +153,16 @@ public class MemberDDL {
 				mb.setUip(rs.getString("uip"));
 				mb.setWdate(rs.getString("wdate"));
 				data.add(mb);
-
+			}
 		}
 	} catch (SQLException e) {
-	}
-	       finally {
-		try {
-			if (rs != null)
-				rs.close();
-			if (ps != null)
-				ps.close();
-			if (conn != null)
-				conn.close();
-		} catch (SQLException e) {
-		}
 	}
 	return data;
 }
 
 // select overload
 public static Vector<MembersDTO> getSelect(String str1, String str2, int opt) {
-	Connection conn = null;
-	PreparedStatement ps = null;
-	ResultSet rs = null;
+
 	String sql = null;
 	if (opt == 1) {
 		sql = "select userid, userpass from members where username=? and useremail=?";
@@ -229,14 +170,12 @@ public static Vector<MembersDTO> getSelect(String str1, String str2, int opt) {
 		sql = "select userid, userpass from members where userid=? and useremail=?";
 	}
 	Vector<MembersDTO> data = new Vector<>();
-	conn = new DBConnect().getConn();
-	try {
-		ps = conn.prepareStatement(sql);
+	try (Connection conn = new DBConnect().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
 		ps.setString(1, str1);
 		ps.setString(2, str2);
 
 		// System.out.println(ps);
-		rs = ps.executeQuery();
+		try (ResultSet rs = ps.executeQuery()) {
 
 		while (rs.next()) {
 			MembersDTO mb = new MembersDTO();
@@ -244,18 +183,8 @@ public static Vector<MembersDTO> getSelect(String str1, String str2, int opt) {
 			mb.setUserpass(rs.getString("userpass"));
 			data.add(mb);
 		}
-
+	}
 	} catch (SQLException e) {
-	} finally {
-		try {
-			if (rs != null)
-				rs.close();
-			if (ps != null)
-				ps.close();
-			if (conn != null)
-				conn.close();
-		} catch (SQLException e) {
-		}
 	}
 	return data;
 }
@@ -263,22 +192,16 @@ public static Vector<MembersDTO> getSelect(String str1, String str2, int opt) {
 //목록 select overload
 
 public static Vector<MembersDTO> getSelect(int limitNum, int listNum) {
-	Connection conn = null;
-	PreparedStatement ps = null;
-	ResultSet rs = null;
-	String sql = null;
 
-	sql = "select * from members order by num desc limit ?, ?";
+	String sql = "select * from members order by num desc limit ?, ?";
 
 	Vector<MembersDTO> data = new Vector<>();
-	conn = new DBConnect().getConn();
-	try {
-		ps = conn.prepareStatement(sql);
+	try (Connection conn = new DBConnect().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
 		ps.setInt(1, limitNum);
 		ps.setInt(2, listNum);
 
 		System.out.println(ps);
-		rs = ps.executeQuery();
+		try (ResultSet rs = ps.executeQuery()) {
 
 		while (rs.next()) {
 			MembersDTO mb = new MembersDTO();
@@ -297,51 +220,28 @@ public static Vector<MembersDTO> getSelect(int limitNum, int listNum) {
 			data.add(mb);
 
 		}
-
-	} catch (SQLException e) {
-	} finally {
-		try {
-			if (rs != null)
-				rs.close();
-			if (ps != null)
-				ps.close();
-			if (conn != null)
-				conn.close();
-		} catch (SQLException e) {
-		}
 	}
+	} catch (SQLException e) {
+}
 	return data;
 }
 
 	// 회원로그인 성공 실패 판단
 	public int checkLogin(MembersDTO dto) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+
 		int checkUser = 0;
 		String sql = "select * from members where userid=? and userpass=?";
-		try {
-			// conn = DBConnect.initConnection(); // Connection 객체에서 conn 받아오기
-			conn = new DBConnect().getConn();
-			ps = conn.prepareStatement(sql);
+		// conn = DBConnect.initConnection(); // Connection 객체에서 conn 받아오기
+		try (Connection conn = new DBConnect().getConn(); PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, dto.getUserid());
 			ps.setString(2, dto.getUserpass());
-			rs = ps.executeQuery();
+			try (ResultSet rs = ps.executeQuery()) {
 			if (rs.next()) {
 				checkUser = rs.getInt("level");
 			}
+		}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-			}
 		}
 		return checkUser;
 	}

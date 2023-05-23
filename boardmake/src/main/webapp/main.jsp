@@ -4,8 +4,6 @@
 <%@page import="boardmake.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="mem" class="boardmake.MemberDDL" scope="page" />
-<jsp:useBean id="dto" class="boardmake.MembersDTO" scope="page" />
 <jsp:useBean id="bdr" class="boardmake.BoardDDL" scope="page" />
 <jsp:useBean id="bdto" class="boardmake.BoardDTO" scope="page" />
 <div class="container">
