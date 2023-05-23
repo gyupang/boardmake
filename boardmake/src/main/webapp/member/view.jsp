@@ -56,6 +56,7 @@ BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
 	</table>
 
 	<div class="text-end">
+	<button type="button" class="btn btn-outline-success " onclick="location.href='?fname=member/edit'">수정 하기</button>
 		<button type="button" class="btn btn-outline-primary " onclick="history.back();">뒤로 가기</button>
 	</div>
 </div>
