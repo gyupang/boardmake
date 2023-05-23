@@ -184,4 +184,25 @@ public class BoardDDL {
 			}
 		}
 
+		// 게시물 수정
+		public int updateEdit(BoardDTO dto) {
+			int result = 0;
+			String query = "UPDATE bbs SET title=?, content=? WHERE num=?";
+
+			try (Connection conn = new DBConnect().getConn(); PreparedStatement psmt = conn.prepareStatement(query)) {
+
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getContent());
+				psmt.setInt(3, dto.getNum());
+
+				// 쿼리문 실행
+				result = psmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.println("게시물 수정 중 예외 발생");
+				e.printStackTrace();
+			}
+
+			return result; // 결과 반환
+		}
+
 		}

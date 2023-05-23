@@ -19,20 +19,22 @@ Collections.reverse(data);
         <table class="table">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
+                    <th class="col-1">No.</th>
+                    <th class="col-5">제목</th>
+                    <!-- <th>내용</th> -->
+                    <th class="col-2">작성자</th>
+                    <th class="col-2">작성일</th>
+                    <th class="col-2">조회수</th>
                 </tr>
             </thead>
                 <tbody>
             <% for (BoardDTO board : data) { %>
                 <tr>
                     <td><%= board.getNum() %></td>
-                    <td><%= board.getTitle() %></td>
-                    <td><%= board.getContent() %></td>
+                     <td>
+                    <a href="index.jsp?fname=member/view&num=<%= board.getNum() %>">
+                    <%= board.getTitle() %></a></td>
+                    <%-- <td><%= board.getContent() %></td> --%>
                     <td><%= board.getUserid() %></td>
                     <td><%= board.getWdate().toLocalDate() %></td>
                     <td><%= board.getCount() %></td>
