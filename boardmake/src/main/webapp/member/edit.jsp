@@ -5,9 +5,23 @@
 <jsp:useBean id="bdto" class="boardmake.BoardDTO" scope="page" />
 <%
 String num = request.getParameter("num"); // 일련번호 받기 
+
 BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
-String userId = (String) session.getAttribute("user");
-if (!userId.equals(dto.getUserid())) {      // 본인인지 확인
+
+String userId = (String) session.getAttribute("user"); 
+
+if (userId == null) {
+    // 로그인되지 않은 상태라면 로그인 페이지로 이동하거나 에러 메시지를 표시할 수 있습니다.
+%>
+<script>
+    alert("작성 회원만 수정할 수 있습니다");
+    history.back();
+</script>
+<%
+    return; // 해당 페이지 종료
+}
+
+if (!userId.equals(dto.getUserid())) {    // 본인인지 확인
 %>
 <script>
     alert("작성자 본인만 수정할 수 있습니다");
@@ -16,6 +30,7 @@ if (!userId.equals(dto.getUserid())) {      // 본인인지 확인
 <%
     return;
 }
+
 %>
 <script type="text/javascript">
    function validateForm(form) {
@@ -60,23 +75,21 @@ if (!userId.equals(dto.getUserid())) {      // 본인인지 확인
 					<div class="form-floating">
 						<textarea class="form-control" name="content"
 							placeholder="Leave a comment here" id="floatingTextarea2"
-							style="height: 200px">
-							<%=dto.getContent()%>
-							</textarea>
+							style="height: 200px"><%=dto.getContent()%></textarea>
 						<label for="floatingTextarea2">내용</label>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit" class="btn btn-outline-success">작성
-						완료</button>
+					<button type="submit" class="btn btn-outline-success">수정 완료</button>
 					<button type="reset" class="btn btn-outline-danger">다시 입력</button>
 					<button type="button" class="btn btn-outline-primary"
 						onclick="location.href='?fname=freeBoard';">목록 보기</button>
 				</td>
 			</tr>
 
+<input type="hidden" name="num" value="<%= num %>">
 			<input type="hidden" name="userid" value="<%= userId %>">
 			<input type="hidden" name="bbsnum" value="1">
 			<input type="hidden" name="uip" value="<%= request.getRemoteAddr() %>">

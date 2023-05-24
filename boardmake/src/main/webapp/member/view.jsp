@@ -1,4 +1,3 @@
-<%@page import="boardmake.BoardDDL"%>
 <%@page import="boardmake.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -45,7 +44,7 @@ BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
 			<tr>
 			<td class="col-2"></td>
 				<td colspan="8">
-				<div class="mt-4 mb-4"><%=dto.getContent()%></div>
+				<div class="mt-4 mb-4"><%=dto.getContent().replace("\n", "<br>")%></div>
 				
 				
 				</td>
@@ -56,7 +55,9 @@ BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
 	</table>
 
 	<div class="text-end">
-	<button type="button" class="btn btn-outline-success " onclick="location.href='?fname=member/edit'">수정 하기</button>
+
+<button type="button" class="btn btn-outline-success" onclick="location.href='?fname=member/edit&num=<%= num %>'">수정 하기</button>
+
 		<button type="button" class="btn btn-outline-primary " onclick="history.back();">뒤로 가기</button>
 	</div>
 </div>

@@ -21,7 +21,7 @@ public class EditProcess extends HttpServlet {
     }
 
 
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 수정 내용 얻기
 		int num = Integer.parseInt(request.getParameter("num"));
 		String title = request.getParameter("title");
@@ -39,7 +39,12 @@ public class EditProcess extends HttpServlet {
 		// 성공/실패 처리
 		if (affected == 1) {
 			// 성공 시 상세 보기 페이지로 이동
-			response.sendRedirect("index.jsp?fname=member/view&num" + dto.getNum());
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('수정되었습니다.');");
+			out.println("location.href='index.jsp?fname=member/view&num=" + dto.getNum() + "';");
+			out.println("</script>");
 
 		} else {
 			response.setContentType("text/html; charset=UTF-8");
