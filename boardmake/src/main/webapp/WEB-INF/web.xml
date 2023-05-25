@@ -107,4 +107,14 @@
     <servlet-name>EditProcess</servlet-name>
     <url-pattern>/EditProcess</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteProcess</display-name>
+    <servlet-name>DeleteProcess</servlet-name>
+    <servlet-class>boardtest.DeleteProcess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteProcess</servlet-name>
+    <url-pattern>/DeleteProcess</url-pattern>
+  </servlet-mapping>
 </web-app>
