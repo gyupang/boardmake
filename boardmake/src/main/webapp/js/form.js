@@ -17,9 +17,6 @@ window.onload = function(){
 	}
 }
 
-
-
-
     function sample6_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -272,5 +269,5 @@ function isChecked(){
 	  if(y==false){
 		  chk.checked = false;
 	 }
-	 }
-	 }
+	}
+}

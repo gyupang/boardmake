@@ -8,7 +8,7 @@
      driverClassName="com.mysql.cj.jdbc.Driver" 
      type="javax.sql.DataSource" 
       url="jdbc:mysql://3.39.100.144:3306/myboard?useUnicode=true&amp;characterEncoding=UTF-8" 
-    maxActive="80" maxWait="1000" 
+    maxTotal="80" maxWaitMillis="1000" 
      removeAbandoned="true"
      />
      

@@ -10,26 +10,7 @@ bdr.updateVisitCount(num); // 조회수 증가
 BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
 %>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  function sendPostRequest(url, data) {
-    $.ajax({
-      url: url,
-      type: "POST",
-      data: data,
-      success: function(response) {
-        // 성공적으로 응답을 받았을 때의 처리 로직
-        alert("삭제되었습니다.");
-        history.go(-2);
-      },
-      error: function(xhr, status, error) {
-        // 요청 실패 또는 응답 상태가 200이 아닐 때의 처리 로직
-        alert("삭제에 실패하였습니다.");
-        history.go(-1);
-      }
-    });
-  }
-</script>
+
 <div class="container-sm">
 	<h1 class="mt-3 mb-3 text-center">게시판</h1>
 	<table class="table">
@@ -77,7 +58,11 @@ BoardDTO dto = bdr.selectView(num); // 게시물 가져오기
 	<div class="text-end">
 
 <button type="button" class="btn btn-outline-success" onclick="location.href='?fname=member/edit&num=<%= num %>'">수정 하기</button>
-<button type="button" class="btn btn-outline-danger" onclick="sendPostRequest('DeleteProcess', 'num=<%= num %>')">삭제하기</button>
+<!-- 삭제하기 버튼을 폼으로 감싸기 -->
+<form action="DeleteProcess" method="POST"  class="d-inline">
+  <input type="hidden" name="num" value="<%= num %>">
+  <button type="submit" class="btn btn-outline-danger">삭제하기</button>
+</form>
 		<button type="button" class="btn btn-outline-primary " onclick="history.back();">뒤로 가기</button>
 	</div>
 </div>
